@@ -6,47 +6,34 @@
 
 using namespace std;
 
-double calculo_pi (int n)
-{
-	
-	double pi;
-	double termino;
-	
-	pi = 0.0;
-	
-	for (int i = 0; i < n; ++i)
-	{
-		termino = 1.0 / (2 * i + 1);
-		if (i % 2 == 0)
-		{
-			pi = pi + termino;
-		}
-		else
-		{
-			pi = pi - termino;
-		}
-	}
-	
-	pi = pi * 4;
-	
-	return pi;
-	
-}
+const float pi = 3.141592; //Se sabe por enunciado
 
 int main ()
 {
-	
-	int n;
-	double resultado;
-	
-	cout << "Ingrese el numero de iteraciones para calcular pi: " << endl;
-	cin >> n;
-	
-	resultado = calculo_pi (n);
-	
-    //con 1000000 da como resultado 3,141592
-	cout << "El valor de pi calculado con " << n << " iteraciones es: " << setprecision (7) << resultado << endl;
-	
-	return 0;
-	
+
+    float sumatoria;
+    float termino;
+    size_t iteraciones;
+
+    sumatoria = 0;
+    iteraciones = 0;
+
+    cout << fixed;
+    cout << setprecision (6);
+
+    while (sumatoria != pi / 4)
+    {
+
+        //Serie de Leibniz = sumatoria desde n = 0 hasta infinito de (-1)^n / 2n + 1 = pi / 4
+        termino = pow (-1, iteraciones) / ((2 * iteraciones) + 1); //n = iteraciones;
+        sumatoria = sumatoria + termino;
+        ++iteraciones;
+
+    }
+
+    cout << "Se hicieron un total de " << iteraciones << " iteraciones" << endl;
+    cout << "Resultado: " << (4 * sumatoria) << endl;
+
+    return 0;
+
 }
